@@ -1,0 +1,9 @@
+{
+  "vpn_list": [
+    {
+      "name": "My VPS SG",
+      "ip": "43.229.132.52",
+      "config": "vless://your-id@43.229.132.52:443?type=udp..."
+    }
+  ]
+}
