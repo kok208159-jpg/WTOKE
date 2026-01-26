@@ -1,0 +1,13 @@
+{
+  "server_list": [
+    {
+      "Dtac": "Thai Server 01",
+      "ip": "43.229.132.52",
+      "port": "7300",
+      "user": "43.229.132.52",
+      "pass": "090510"
+    }
+  ],
+  "app_version": "1.0",
+  "message": "Welcome to my VPN"
+}
