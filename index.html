@@ -1,80 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ဒို့နှစ်ဦးရဲ့ အမှတ်တရများစွာ</title>
+    <title>နှင်းနုဦးရဲ့ အမှတ်တရများ</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { display: flex; height: 100vh; background-color: #fcf6f5; }
-        
-        /* Sidebar */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { display: flex; height: 100vh; background-color: #fcf6f5; color: #333; }
         nav { width: 260px; background: white; padding: 25px; border-right: 1px solid #eee; box-shadow: 2px 0 10px rgba(0,0,0,0.02); }
-        nav h2 { color: #d63384; margin-bottom: 30px; font-size: 1.4rem; font-weight: bold; line-height: 1.4; }
-        .menu-item { padding: 12px 15px; cursor: pointer; border-radius: 10px; transition: 0.3s; margin-bottom: 8px; color: #555; }
+        nav h2 { color: #d63384; margin-bottom: 30px; font-size: 1.4rem; }
+        .menu-item { padding: 12px 15px; cursor: pointer; border-radius: 10px; transition: 0.3s; margin-bottom: 8px; font-size: 0.95rem; }
         .menu-item:hover { background: #fff0f6; color: #d63384; }
         .active { background: #fff0f6; color: #d63384; font-weight: bold; }
-        
-        /* Main Content */
         main { flex: 1; padding: 30px; overflow-y: auto; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; }
-        .header h1 { color: #333; font-size: 1.6rem; }
-        
-        /* Grid Layout for Albums */
-        .section-title { margin: 25px 0 15px; color: #666; font-size: 1.1rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 12px; border-radius: 15px; border: 1px solid #f0f0f0; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: 140px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
-        .card p { font-weight: 500; color: #444; }
-
-        /* Notepad Section */
-        .notepad { background: #fff9e6; padding: 25px; border-radius: 15px; border-left: 6px solid #ffcc00; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .notepad strong { display: block; margin-bottom: 10px; color: #856404; }
-        textarea { width: 100%; border: none; background: transparent; resize: none; outline: none; font-size: 16px; line-height: 1.8; color: #444; }
-        .btn-save { background: #d63384; color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; margin-top: 15px; font-weight: 600; transition: 0.3s; }
-        .btn-save:hover { background: #b82a6e; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 12px; border-radius: 15px; border: 1px solid #f0f0f0; text-align: center; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
+        #auth_btn { background: #d63384; color: white; border: none; padding: 12px 25px; border-radius: 30px; cursor: pointer; font-weight: bold; }
+        .notepad { background: #fff9e6; padding: 25px; border-radius: 15px; border-left: 6px solid #ffcc00; margin-top: 40px; }
+        textarea { width: 100%; border: none; background: transparent; resize: none; outline: none; font-size: 16px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <nav>
-    <h2>💖 ဒို့နှစ်ဦးရဲ့ <br>အမှတ်တရများစွာ</h2>
+    <h2>💞 နှင်းနုဦးရဲ့ <br> အမှတ်တရများစွာ</h2>
     <div class="menu-item active">📂 သိမ်းဆည်းထားသမျှ</div>
     <div class="menu-item">📸 ဓာတ်ပုံအယ်လ်ဘမ်များ</div>
     <div class="menu-item">✍️ နေ့စဉ်မှတ်တမ်း</div>
-    <div class="menu-item">⭐ အနှစ်သက်ဆုံးများ</div>
 </nav>
 
 <main>
     <div class="header">
-        <h1>မင်္ဂလာပါ... အမှတ်တရတွေကို ပြန်ကြည့်ကြစို့ ✨</h1>
-        <input type="text" placeholder="အမှတ်တရများ ရှာဖွေရန်..." style="padding: 10px 20px; border-radius: 25px; border: 1px solid #ddd; width: 300px; outline: none;">
+        <h1>မင်္ဂလာပါ... အမှတ်တရတွေ ကြည့်ရအောင် ✨</h1>
+        <button id="auth_btn" onclick="handleAuthClick()">Google Photos ချိတ်မည်</button>
     </div>
 
-    <h3 class="section-title">အမှတ်တရ ကဏ္ဍများ</h3>
-    <div class="grid">
-        <div class="card">
-            <img src="https://via.placeholder.com/220x140" alt="Travel">
-            <p>✈️ အတူတူသွားခဲ့တဲ့ ခရီးစဉ်များ</p>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/220x140" alt="Special Days">
-            <p>🎁 ထူးခြားတဲ့ နေ့ရက်များ</p>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/220x140" alt="Food">
-            <p>🍴 အတူတူစားခဲ့တဲ့ စားသောက်ဖွယ်ရာ</p>
-        </div>
+    <div id="photos_grid" class="grid">
+        <p style="color: #888;">ချိတ်ဆက်ပြီးမှ ပုံများ ပေါ်လာပါမည်...</p>
     </div>
 
-    <h3 class="section-title">ဒီနေ့အတွက် မှတ်တမ်း</h3>
     <div class="notepad">
-        <strong>January 31, 2026 - Saturday</strong>
-        <textarea rows="5" placeholder="ဒီနေ့ရဲ့ အမှတ်တရတွေကို ရေးလိုက်ပါ..."></textarea>
-        <button class="btn-save">မှတ်တမ်းတင်မည်</button>
+        <strong>February 1, 2026 - Sunday</strong>
+        <textarea id="note-area" rows="4" placeholder="ဒီနေ့ရဲ့ အမှတ်တရတွေကို ရေးလိုက်ပါ..."></textarea>
     </div>
 </main>
+
+<script>
+    const CLIENT_ID = '1043599242937-k8ogr0hv2gbqnil69bpoqkdakht2ruia.apps.googleusercontent.com';
+    const SCOPES = 'https://www.googleapis.com/auth/photoslibrary.readonly';
+    let tokenClient;
+
+    function initClient() {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: CLIENT_ID,
+            scope: SCOPES,
+            callback: (resp) => {
+                if (resp.access_token) {
+                    document.getElementById('auth_btn').innerText = "ချိတ်ဆက်ပြီးပါပြီ ✅";
+                    loadPhotos(resp.access_token);
+                }
+            },
+        });
+    }
+
+    function handleAuthClick() { tokenClient.requestAccessToken(); }
+
+    async function loadPhotos(token) {
+        const res = await fetch('https://photoslibrary.googleapis.com/v1/mediaItems?pageSize=12', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        const grid = document.getElementById('photos_grid');
+        grid.innerHTML = '';
+        if (data.mediaItems) {
+            data.mediaItems.forEach(item => {
+                grid.innerHTML += `<div class="card"><img src="${item.baseUrl}=w400-h400"></div>`;
+            });
+        }
+    }
+    window.onload = initClient;
+</script>
 
 </body>
 </html>
