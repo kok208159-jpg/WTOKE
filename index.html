@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WATOKE VPN - Memories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #d63384;
+            --sidebar-bg: rgba(255, 255, 255, 0.9);
+            --main-overlay: rgba(255, 255, 255, 0.3);
+            --text-color: #333;
+            --card-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #ff4d94;
+            --sidebar-bg: rgba(20, 20, 20, 0.9);
+            --main-overlay: rgba(0, 0, 0, 0.4);
+            --text-color: #f1f1f1;
+            --card-bg: rgba(45, 45, 45, 0.9);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Pyidaungsu', sans-serif; transition: 0.3s; }
+        
+        body { 
+            display: flex; 
+            height: 100vh; 
+            background: url('https://r.jina.ai/i/e00b5220c3a241289139265f6c8d7658') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        nav { 
+            width: 280px; 
+            background: var(--sidebar-bg); 
+            padding: 25px; 
+            display: flex; 
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+        nav h2 { color: var(--primary-color); margin-bottom: 30px; font-size: 1.4rem; font-weight: bold; }
+        
+        .menu-item { padding: 12px 15px; cursor: pointer; border-radius: 12px; margin-bottom: 8px; color: var(--text-color); display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .menu-item:hover, .active { background: rgba(214, 51, 132, 0.1); color: var(--primary-color); font-weight: bold; }
+
+        /* Social links */
+        .social-links { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(125,125,125,0.2); }
+        .social-btn { display: flex; align-items: center; gap: 10px; padding: 10px; margin-bottom: 8px; border-radius: 8px; text-decoration: none; color: white; font-size: 14px; }
+        .fb { background: #1877F2; } .msger { background: #0084FF; } .tg { background: #229ED9; }
+
+        /* Main Content */
+        main { 
+            flex: 1; 
+            padding: 30px; 
+            overflow-y: auto; 
+            background: var(--main-overlay);
+            backdrop-filter: blur(5px);
+        }
+
+        .top-controls { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px; }
+        .btn-action { padding: 8px 18px; border-radius: 20px; border: none; cursor: pointer; background: var(--primary-color); color: white; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
+        .header h1 { text-shadow: 1px 1px 5px rgba(0,0,0,0.2); }
+
+        /* Memory Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: var(--card-bg); padding: 12px; border-radius: 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; }
+
+        /* Notepad Area */
+        .notepad { background: rgba(255, 255, 255, 0.6); padding: 25px; border-radius: 20px; border-left: 8px solid #ffcc00; margin-top: 30px; backdrop-filter: blur(10px); }
+        textarea { width: 100%; border: none; background: transparent; resize: none; outline: none; font-size: 16px; line-height: 1.8; color: #333; font-weight: 500; }
+    </style>
+</head>
+<body data-theme="light">
+
+<nav>
+    <h2 id="nav-title">💖 ဒို့နှစ်ဦးရဲ့ <br>အမှတ်တရများစွာ</h2>
+    <div class="menu-item active"><i class="fas fa-folder-open"></i> <span class="lang" data-mm="သိမ်းဆည်းထားသမျှ" data-en="My Files">သိမ်းဆည်းထားသမျှ</span></div>
+    <div class="menu-item"><i class="fas fa-heart"></i> <span class="lang" data-mm="အနှစ်သက်ဆုံးများ" data-en="Favorites">အနှစ်သက်ဆုံးများ</span></div>
+
+    <div class="social-links">
+        <a href="https://www.facebook.com/share/188ddk8Tmq/" class="social-btn fb" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://m.me/kyaw.chit.5030" class="social-btn msger" target="_blank"><i class="fab fa-
