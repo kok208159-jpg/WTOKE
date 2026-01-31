@@ -33,6 +33,72 @@
     </style>
 </head>
 <body>
+    <script>
+    // သင့်ရဲ့ Client ID ကို ဒီမှာ ထည့်ပေးထားပါတယ်
+    const CLIENT_ID = '1043599242937-k8ogr0hv2gbqnil69bpoqkdakht2ruia.apps.googleusercontent.com';
+    const SCOPES = 'https://www.googleapis.com/auth/photoslibrary.readonly';
+    let tokenClient;
+
+    // ၁။ စာမျက်နှာ စဖွင့်တာနဲ့ Google Library ကို အဆင်သင့်ဖြစ်အောင် လုပ်ခြင်း
+    function initClient() {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: CLIENT_ID,
+            scope: SCOPES,
+            callback: (resp) => {
+                if (resp.access_token) {
+                    // Login အောင်မြင်ရင် ပုံတွေ စဆွဲထုတ်မယ်
+                    loadPhotos(resp.access_token);
+                }
+            },
+        });
+        // အရင်သိမ်းထားတဲ့ Note ကို ပြန်ဖတ်မယ်
+        document.getElementById('note-input').value = localStorage.getItem('daily_note') || "";
+    }
+
+    // ၂။ Login ခလုတ်နှိပ်ရင် Google အကောင့်ရွေးခိုင်းခြင်း
+    function handleAuthClick() {
+        tokenClient.requestAccessToken();
+    }
+
+    // ၃။ Google Photos API ဆီကနေ ပုံတွေ တောင်းယူခြင်း
+    async function loadPhotos(token) {
+        try {
+            const res = await fetch('https://photoslibrary.googleapis.com/v1/mediaItems?pageSize=20', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const data = await res.json();
+            const grid = document.getElementById('photos_grid');
+            
+            if (data.mediaItems) {
+                // ပုံတွေကို UI မှာ ပြသခြင်း
+                grid.innerHTML = data.mediaItems.map(item => `
+                    <div class="photo-item">
+                        <img src="${item.baseUrl}=w400" alt="photo">
+                        <div class="photo-name">IMG_${item.id.substring(0,5)}.jpg</div>
+                    </div>`).join('');
+                document.getElementById('auth_btn').innerText = "ချိတ်ဆက်ပြီး ✅";
+            }
+        } catch (error) {
+            console.error("Error loading photos:", error);
+        }
+    }
+
+    // ၄။ Notepad မှာ စာရိုက်တိုင်း Auto-save လုပ်ခြင်း
+    function saveNote() {
+        const content = document.getElementById('note-input').value;
+        localStorage.setItem('daily_note', content);
+        
+        // ခဏတာ "သိမ်းဆည်းပြီး" စာတန်းပြမယ်
+        const msg = document.getElementById('save-msg');
+        msg.style.display = 'block';
+        setTimeout(() => msg.style.display = 'none', 1000);
+    }
+        <body>
+
+    // စာမျက်နှာ Load ဖြစ်တာနဲ့ initClient ကို run ပါ
+    window.onload = initClient;
+</script>
+
 
 <div class="container">
     <div class="header-section">
