@@ -3,88 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WATOKE VPN - Memories</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ဒို့နှစ်ဦးရဲ့ အမှတ်တရများစွာ</title>
     <style>
-        :root {
-            --primary-color: #d63384;
-            --sidebar-bg: rgba(255, 255, 255, 0.9);
-            --main-overlay: rgba(255, 255, 255, 0.3);
-            --text-color: #333;
-            --card-bg: rgba(255, 255, 255, 0.9);
-        }
-
-        [data-theme="dark"] {
-            --primary-color: #ff4d94;
-            --sidebar-bg: rgba(20, 20, 20, 0.9);
-            --main-overlay: rgba(0, 0, 0, 0.4);
-            --text-color: #f1f1f1;
-            --card-bg: rgba(45, 45, 45, 0.9);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Pyidaungsu', sans-serif; transition: 0.3s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; height: 100vh; background-color: #fcf6f5; }
         
-        body { 
-            display: flex; 
-            height: 100vh; 
-            background: url('https://r.jina.ai/i/e00b5220c3a241289139265f6c8d7658') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--text-color);
-            overflow: hidden;
-        }
-
         /* Sidebar */
-        nav { 
-            width: 280px; 
-            background: var(--sidebar-bg); 
-            padding: 25px; 
-            display: flex; 
-            flex-direction: column;
-            backdrop-filter: blur(10px);
-            z-index: 10;
-        }
-        nav h2 { color: var(--primary-color); margin-bottom: 30px; font-size: 1.4rem; font-weight: bold; }
+        nav { width: 260px; background: white; padding: 25px; border-right: 1px solid #eee; box-shadow: 2px 0 10px rgba(0,0,0,0.02); }
+        nav h2 { color: #d63384; margin-bottom: 30px; font-size: 1.4rem; font-weight: bold; line-height: 1.4; }
+        .menu-item { padding: 12px 15px; cursor: pointer; border-radius: 10px; transition: 0.3s; margin-bottom: 8px; color: #555; }
+        .menu-item:hover { background: #fff0f6; color: #d63384; }
+        .active { background: #fff0f6; color: #d63384; font-weight: bold; }
         
-        .menu-item { padding: 12px 15px; cursor: pointer; border-radius: 12px; margin-bottom: 8px; color: var(--text-color); display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .menu-item:hover, .active { background: rgba(214, 51, 132, 0.1); color: var(--primary-color); font-weight: bold; }
-
-        /* Social links */
-        .social-links { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(125,125,125,0.2); }
-        .social-btn { display: flex; align-items: center; gap: 10px; padding: 10px; margin-bottom: 8px; border-radius: 8px; text-decoration: none; color: white; font-size: 14px; }
-        .fb { background: #1877F2; } .msger { background: #0084FF; } .tg { background: #229ED9; }
-
         /* Main Content */
-        main { 
-            flex: 1; 
-            padding: 30px; 
-            overflow-y: auto; 
-            background: var(--main-overlay);
-            backdrop-filter: blur(5px);
-        }
+        main { flex: 1; padding: 30px; overflow-y: auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; }
+        .header h1 { color: #333; font-size: 1.6rem; }
+        
+        /* Grid Layout for Albums */
+        .section-title { margin: 25px 0 15px; color: #666; font-size: 1.1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 12px; border-radius: 15px; border: 1px solid #f0f0f0; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 140px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
+        .card p { font-weight: 500; color: #444; }
 
-        .top-controls { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px; }
-        .btn-action { padding: 8px 18px; border-radius: 20px; border: none; cursor: pointer; background: var(--primary-color); color: white; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
-        .header h1 { text-shadow: 1px 1px 5px rgba(0,0,0,0.2); }
-
-        /* Memory Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: var(--card-bg); padding: 12px; border-radius: 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; }
-
-        /* Notepad Area */
-        .notepad { background: rgba(255, 255, 255, 0.6); padding: 25px; border-radius: 20px; border-left: 8px solid #ffcc00; margin-top: 30px; backdrop-filter: blur(10px); }
-        textarea { width: 100%; border: none; background: transparent; resize: none; outline: none; font-size: 16px; line-height: 1.8; color: #333; font-weight: 500; }
+        /* Notepad Section */
+        .notepad { background: #fff9e6; padding: 25px; border-radius: 15px; border-left: 6px solid #ffcc00; margin-top: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .notepad strong { display: block; margin-bottom: 10px; color: #856404; }
+        textarea { width: 100%; border: none; background: transparent; resize: none; outline: none; font-size: 16px; line-height: 1.8; color: #444; }
+        .btn-save { background: #d63384; color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; margin-top: 15px; font-weight: 600; transition: 0.3s; }
+        .btn-save:hover { background: #b82a6e; }
     </style>
 </head>
-<body data-theme="light">
+<body>
 
 <nav>
-    <h2 id="nav-title">💖 ဒို့နှစ်ဦးရဲ့ <br>အမှတ်တရများစွာ</h2>
-    <div class="menu-item active"><i class="fas fa-folder-open"></i> <span class="lang" data-mm="သိမ်းဆည်းထားသမျှ" data-en="My Files">သိမ်းဆည်းထားသမျှ</span></div>
-    <div class="menu-item"><i class="fas fa-heart"></i> <span class="lang" data-mm="အနှစ်သက်ဆုံးများ" data-en="Favorites">အနှစ်သက်ဆုံးများ</span></div>
+    <h2>💖 ဒို့နှစ်ဦးရဲ့ <br>အမှတ်တရများစွာ</h2>
+    <div class="menu-item active">📂 သိမ်းဆည်းထားသမျှ</div>
+    <div class="menu-item">📸 ဓာတ်ပုံအယ်လ်ဘမ်များ</div>
+    <div class="menu-item">✍️ နေ့စဉ်မှတ်တမ်း</div>
+    <div class="menu-item">⭐ အနှစ်သက်ဆုံးများ</div>
+</nav>
 
-    <div class="social-links">
-        <a href="https://www.facebook.com/share/188ddk8Tmq/" class="social-btn fb" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-        <a href="https://m.me/kyaw.chit.5030" class="social-btn msger" target="_blank"><i class="fab fa-
+<main>
+    <div class="header">
+        <h1>မင်္ဂလာပါ... အမှတ်တရတွေကို ပြန်ကြည့်ကြစို့ ✨</h1>
+        <input type="text" placeholder="အမှတ်တရများ ရှာဖွေရန်..." style="padding: 10px 20px; border-radius: 25px; border: 1px solid #ddd; width: 300px; outline: none;">
+    </div>
+
+    <h3 class="section-title">အမှတ်တရ ကဏ္ဍများ</h3>
+    <div class="grid">
+        <div class="card">
+            <img src="https://via.placeholder.com/220x140" alt="Travel">
+            <p>✈️ အတူတူသွားခဲ့တဲ့ ခရီးစဉ်များ</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/220x140" alt="Special Days">
+            <p>🎁 ထူးခြားတဲ့ နေ့ရက်များ</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/220x140" alt="Food">
+            <p>🍴 အတူတူစားခဲ့တဲ့ စားသောက်ဖွယ်ရာ</p>
+        </div>
+    </div>
+
+    <h3 class="section-title">ဒီနေ့အတွက် မှတ်တမ်း</h3>
+    <div class="notepad">
+        <strong>January 31, 2026 - Saturday</strong>
+        <textarea rows="5" placeholder="ဒီနေ့ရဲ့ အမှတ်တရတွေကို ရေးလိုက်ပါ..."></textarea>
+        <button class="btn-save">မှတ်တမ်းတင်မည်</button>
+    </div>
+</main>
+
+</body>
+</html>
