@@ -1,5 +1,5 @@
 {
-  "server": "43.229.132.52",
-  "port": "7300",
-  "status": "on"
+  "vps_ip": "117.18.126.36",
+  "vps_port": "5666",
+  "panel_url": "https://kts.zivpn-panel.cc/api/auth"
 }
