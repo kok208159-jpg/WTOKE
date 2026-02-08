@@ -2,7 +2,7 @@
 // version for updating, if there is an update, need to change more numbers than before
 "Version":"1.2",
 //link for server update
-"Url":"https://github.com/wnet1/Updatewnet/raw/main/TH01-DTAC-TRUE-VIP-01.zip" ,
+"Url":"https://github.com/kok208159-jpg/WTOKE/blob/main/Seever.zip" ,
 "Changelog":"
 ဖိုင်တင်ရက် 26/07/2023
 အသုံးပြုရတဲ့ဆင်းမ် DTAC-TRUE
@@ -16,7 +16,7 @@
 အပ်ဒိတ်လုပ်ပါ ကိုနှိပ်လိုက်ပါ
 အပ်ဒိတ်ပြီးမြောက်သည်အထိစောင့်ပေးပါ
  
-VIP 1လမှ 50ဘတ်တည်းပါ
+VIP 1လမှ 
 ပြဿနာတစ်ခုခုကိုသတင်းပို့ချင်တာ
 ကျနော်ရဲ့Cbသို့ဆက်သွယ်လာပါဗျ
 
@@ -29,7 +29,7 @@ VIP 1လမှ 50ဘတ်တည်းပါ
  
 // don't mess with the bottom
 "latestVersion": "1.0.0",
-"latestVersionCode": "1",
+"latestVersionCode": "2",
 "url": "",
  "releaseNotes": [
  "-Demo"
